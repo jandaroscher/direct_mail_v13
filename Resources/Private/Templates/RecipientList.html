@@ -96,31 +96,33 @@
     </f:if>
     <f:if condition="{type} == 4">
         <h3><f:translate key="{lll}recip_select_mailgroup" /></h3>
-        <table class="table table-striped table-hover">
-            <thead>
-                <th colspan="2">&nbsp;</th>
-                <th><f:translate key="LLL:EXT:core/Resources/Private/Language/locallang_core.xlf:labels.uid" /></th>
-                <th><f:translate key="{lll4}LGL.title" /></th>
-                <th><f:translate key="{lll4}LGL.type" /></th>
-                <th><f:translate key="{lll4}LGL.description" /></th>
-                <th><f:translate key="{lll}recip_group_amount" /></th>
-            </thead>
-            <f:for each="{data.rows}" as="row">
-                <tr class="db_list_normal">
-                    <td nowrap="nowrap"><f:format.raw>{row.icon}</f:format.raw></td>
-                    <td>
-						<f:if condition="{row.editLink.onClick}">
-							<a href="{row.editLink.onClick}" title="{f:translate(key: '{lll}dmail_edit')}"><f:format.raw>{row.editLink.icon}</f:format.raw></a>
-						</f:if>
-					</td>
-                    <td nowrap="nowrap">{row.id}</td>
-                    <td nowrap="nowrap"><a href="{row.reciplink}"><strong><f:format.raw>{row.reciplinkText}</f:format.raw></strong></a></td>
-                    <td nowrap="nowrap"><f:format.raw>{row.type}</f:format.raw></td>
-                    <td nowrap="nowrap"><f:format.raw>{row.description}</f:format.raw></td>
-                    <td>{row.count}</td>
-                </tr>
-            </f:for>
-        </table>
+        <div class="table-fit">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <th colspan="2">&nbsp;</th>
+                    <th><f:translate key="LLL:EXT:core/Resources/Private/Language/locallang_core.xlf:labels.uid" /></th>
+                    <th><f:translate key="{lll4}LGL.title" /></th>
+                    <th><f:translate key="{lll4}LGL.type" /></th>
+                    <th><f:translate key="{lll4}LGL.description" /></th>
+                    <th><f:translate key="{lll}recip_group_amount" /></th>
+                </thead>
+                <f:for each="{data.rows}" as="row">
+                    <tr class="db_list_normal">
+                        <td nowrap="nowrap"><f:format.raw>{row.icon}</f:format.raw></td>
+                        <td>
+                            <f:if condition="{row.editLink.onClick}">
+                                <a href="{row.editLink.onClick}" title="{f:translate(key: '{lll}dmail_edit')}"><f:format.raw>{row.editLink.icon}</f:format.raw></a>
+                            </f:if>
+                        </td>
+                        <td nowrap="nowrap">{row.id}</td>
+                        <td nowrap="nowrap"><a href="{row.reciplink}"><strong><f:format.raw>{row.reciplinkText}</f:format.raw></strong></a></td>
+                        <td nowrap="nowrap"><f:format.raw>{row.type}</f:format.raw></td>
+                        <td nowrap="nowrap"><f:format.raw>{row.description}</f:format.raw></td>
+                        <td>{row.count}</td>
+                    </tr>
+                </f:for>
+            </table>
+        </div>
         <div style="padding-top: 20px;"></div>
         <h3><f:translate key="{lll}recip_select_mailgroup" /></h3>
         <a href="{data.editOnClickLink}" class="t3-link">
@@ -133,20 +135,22 @@
 <f:section name="recipListConfig">
 	<f:if condition="{recipListConfig.counter}">
 		{recipListConfig.title}<strong> {recipListConfig.counter}</strong><br>
-		<table class="table table-striped table-hover">
-			<f:for each="{recipListConfig.rows}" as="row">
-				<tr class="db_list_normal">
-					<td class="nowrap"><f:format.raw>{row.icon}</f:format.raw></td>
-					<td>
-						<f:if condition="{row.editLink}">
-							<a class="t3-link" href="{row.editLink}" title="{recipListConfig.editLinkTitle}"><f:format.raw>{recipListConfig.actionsOpen}</f:format.raw></a>
-						</f:if>
-					</td>
-					<td class="nowrap"><f:format.raw>{row.email}</f:format.raw></td>
-					<td class="nowrap"><f:format.raw>{row.name}</f:format.raw></td>
-				</tr>
-			</f:for>
-		</table>
+        <div class="table-fit">
+            <table class="table table-striped table-hover">
+                <f:for each="{recipListConfig.rows}" as="row">
+                    <tr class="db_list_normal">
+                        <td class="nowrap"><f:format.raw>{row.icon}</f:format.raw></td>
+                        <td>
+                            <f:if condition="{row.editLink}">
+                                <a class="t3-link" href="{row.editLink}" title="{recipListConfig.editLinkTitle}"><f:format.raw>{recipListConfig.actionsOpen}</f:format.raw></a>
+                            </f:if>
+                        </td>
+                        <td class="nowrap"><f:format.raw>{row.email}</f:format.raw></td>
+                        <td class="nowrap"><f:format.raw>{row.name}</f:format.raw></td>
+                    </tr>
+                </f:for>
+            </table>
+        </div>
 	</f:if>
 </f:section>
 
