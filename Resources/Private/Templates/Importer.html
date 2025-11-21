@@ -27,7 +27,7 @@
 		<form action="" method="post" name="queryform" enctype="multipart/form-data">
 			<f:if condition="{formcontent.output.upload.show}">
 				<f:translate key="{lll}mailgroup_import_upload_file" />
-				<fieldset class="form-section">
+				<fieldset>
 					<input type="file" name="upload_1" />
 					<br><br>
 				</fieldset>
@@ -41,7 +41,7 @@
 				<br>
 				<p><b><f:translate key="{lll}mailgroup_import_or" /></b></p><br>
 				<f:translate key="{lll}mailgroup_import_paste_csv" /><br>
-				<fieldset class="form-section">
+				<fieldset>
 					<textarea name="CSV_IMPORT[csv]" class="form-control formengine-textarea">{formcontent.output.upload.csv}</textarea>
 					<br><br>
 				</fieldset>
@@ -56,7 +56,7 @@
 				<input type="hidden" name="CSV_IMPORT[newFileUid]" value="{formcontent.output.upload.newFileUid}">
 			</f:if>
 			<f:if condition="{formcontent.output.conf.show}">
-				<fieldset class="form-section">
+				<fieldset>
 					<div class="table-fit">
 					<table class="table table-striped table-hover">
 						<tbody>
@@ -183,7 +183,7 @@
 				<input type="hidden" name="CSV_IMPORT[newFileUid]" value="{formcontent.output.conf.newFileUid}">
 			</f:if>
 			<f:if condition="{formcontent.output.mapping.show}">
-				<fieldset class="form-section">
+				<fieldset>
 					<div class="table-fit">
 					<table class="table table-striped table-hover">
 						<tbody>
@@ -219,7 +219,7 @@
 					</ul>
 				</f:if>
 				<h3><f:translate key="{lll}mailgroup_import_mapping_conf" /></h3>
-				<fieldset class="form-section">
+				<fieldset>
 					<div class="table-fit">
 					<table class="table table-striped table-hover">
 						<thead>
@@ -269,7 +269,7 @@
 				</fieldset>
 				<br>
 				<h3><f:translate key="{lll}mailgroup_import_mapping_conf_add" /></h3>
-				<fieldset class="form-section">
+				<fieldset>
 					<div class="table-fit">
 					<table class="table table-striped table-hover">
 						<tbody>
@@ -342,7 +342,7 @@
 			</f:if>
 			<f:if condition="{formcontent.output.startImport.show}">
 				<f:if condition="{formcontent.output.startImport.tables -> f:count()}">
-					<fieldset class="form-section">
+					<fieldset>
 						<f:for each="{formcontent.output.startImport.tables}" as="table">
 							<div class="table-fit">
 							<table class="table table-striped table-hover">
