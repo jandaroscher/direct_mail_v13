@@ -57,6 +57,7 @@
 			</f:if>
 			<f:if condition="{formcontent.output.conf.show}">
 				<fieldset class="form-section">
+					<div class="table-fit">
 					<table class="table table-striped table-hover">
 						<tbody>
 							<tr class="db_list_normal">
@@ -167,6 +168,7 @@
 							</tr>
 						</tbody>
 					</table>
+					</div>
 				</fieldset>
 				<br>
 				<input type="hidden" name="importStep[next]" value="mapping">
@@ -182,6 +184,7 @@
 			</f:if>
 			<f:if condition="{formcontent.output.mapping.show}">
 				<fieldset class="form-section">
+					<div class="table-fit">
 					<table class="table table-striped table-hover">
 						<tbody>
 							<tr class="db_list_normal">
@@ -200,6 +203,7 @@
 							</tr>
 						</tbody>
 					</table>
+					</div>
 					<button class="btn btn-default btn-sm" type="submit" value="{f:translate(key: '{lll}mailgroup_import_update')}" name="CSV_IMPORT[update]">
 						<f:translate key="{lll}mailgroup_import_update" />
 					</button>
@@ -216,6 +220,7 @@
 				</f:if>
 				<h3><f:translate key="{lll}mailgroup_import_mapping_conf" /></h3>
 				<fieldset class="form-section">
+					<div class="table-fit">
 					<table class="table table-striped table-hover">
 						<thead>
 							<tr class="t3-row-header">
@@ -242,6 +247,7 @@
 										</td>
 										<td nowrap="">
 											<f:if condition="{row.mapping_value -> f:count()}">
+												<div class="table-fit">
 												<table class="table table-striped table-hover">
 													<f:for each="{row.mapping_value}" as="mv">
 														<tr nowrap="">
@@ -251,6 +257,7 @@
 														</tr>
 													</f:for>
 												</table>
+												</div>
 											</f:if>
 										</td>
 									</tr>
@@ -258,10 +265,12 @@
 							</f:if>
 						</tbody>
 					</table>
+					</div>
 				</fieldset>
 				<br>
 				<h3><f:translate key="{lll}mailgroup_import_mapping_conf_add" /></h3>
 				<fieldset class="form-section">
+					<div class="table-fit">
 					<table class="table table-striped table-hover">
 						<tbody>
 							<tr class="db_list_normal">
@@ -306,6 +315,7 @@
 							</f:if>
 						</tbody>
 					</table>
+					</div>
 				</fieldset>
 				<br>
 				<input type="hidden" name="importStep[next]" value="startImport">
@@ -334,6 +344,7 @@
 				<f:if condition="{formcontent.output.startImport.tables -> f:count()}">
 					<fieldset class="form-section">
 						<f:for each="{formcontent.output.startImport.tables}" as="table">
+							<div class="table-fit">
 							<table class="table table-striped table-hover">
 								<thead>
 									<tr class="t3-row-header">
@@ -352,6 +363,7 @@
 									</f:if>
 								</tbody>
 							</table>
+							</div>
 						</f:for>
 					</fieldset>
 				</f:if>

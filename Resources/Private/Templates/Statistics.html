@@ -44,7 +44,7 @@
         </nav>
         <div style="padding-top: 20px;"></div>
     </f:if>
-
+	<div class="table-fit">
     <table class="table table-striped table-hover">
         <thead>
 			<th>&nbsp;</th>
@@ -69,72 +69,77 @@
             </tr>
         </f:for>
     </table>
-    <div style="padding-top: 20px;"></div>
+	</div>
 </f:section>
 
 <f:section name="table">
     <f:variable name="lll" value="LLL:EXT:direct_mail/Resources/Private/Language/locallang_mod2-6.xlf:" />
-    <table class="table table-striped table-hover">
-        <thead>
-            <tr class="t3-row-header">
-                <f:for each="{table.head}" as="head">
-                    <th>
-                       <f:if condition="{head}"><f:translate key="{lll}{head}" /></f:if>
-                    </th>
-                </f:for>
-            </tr>
-        </thead>
-        <tbody>
-            <f:for each="{table.body}" as="body">
-                <tr>
-                    <f:for each="{body}" as="cell" iteration="fooIterator">
-                        <td>
-                        <f:if condition="{fooIterator.cycle} == 1">
-                            <f:then>
-                                <f:if condition="{cell} != ''"><f:translate key="{lll}{cell}" /></f:if>
-                            </f:then>
-                            <f:else><f:format.raw>{cell}</f:format.raw></f:else>
-                        </f:if>
-                        </td>
-                    </f:for>
-                </tr>
-            </f:for>
-        </tbody>
-    </table>
+    <div class="table-fit">
+		<table class="table table-striped table-hover">
+			<thead>
+				<tr class="t3-row-header">
+					<f:for each="{table.head}" as="head">
+						<th>
+						<f:if condition="{head}"><f:translate key="{lll}{head}" /></f:if>
+						</th>
+					</f:for>
+				</tr>
+			</thead>
+			<tbody>
+				<f:for each="{table.body}" as="body">
+					<tr>
+						<f:for each="{body}" as="cell" iteration="fooIterator">
+							<td>
+							<f:if condition="{fooIterator.cycle} == 1">
+								<f:then>
+									<f:if condition="{cell} != ''"><f:translate key="{lll}{cell}" /></f:if>
+								</f:then>
+								<f:else><f:format.raw>{cell}</f:format.raw></f:else>
+							</f:if>
+							</td>
+						</f:for>
+					</tr>
+				</f:for>
+			</tbody>
+		</table>
+	</div>
 </f:section>
 
 <f:section name="table4">
     <f:variable name="lll" value="LLL:EXT:direct_mail/Resources/Private/Language/locallang_mod2-6.xlf:" />
-    <table class="table table-striped table-hover">
-        <thead>
-            <tr class="t3-row-header">
-                <f:for each="{table.head}" as="head">
-                    <th>
-                       <f:if condition="{head}"><f:translate key="{lll}{head}" /></f:if>
-                    </th>
-                </f:for>
-            </tr>
-        </thead>
-        <tbody>
-            <f:for each="{table.body}" as="tr">
-                <tr>
-					<td><f:translate key="{lll}{tr.title}" /></td>
-					<td>{tr.counter}</td>
-					<td>
-						<div class="btn-group">
-							<f:for each="{tr.icons}" as="icon">
-								<a href="{table.url}&{icon.getAttr}=1" class="btn btn-default" title="{f:translate(key: '{lll}{icon.lang}')}">
-									<span class="t3js-icon icon icon-size-small icon-state-default">
-										<f:format.raw>{icon.icon}</f:format.raw>
-									</span>
-								</a>
-							</f:for>
-						</div>
-					</td>
-                </tr>
-            </f:for>
-        </tbody>
-    </table>
+    
+	<div class="table-fit">
+		<table class="table table-striped table-hover">
+			<thead>
+				<tr class="t3-row-header">
+					<f:for each="{table.head}" as="head">
+						<th>
+						<f:if condition="{head}"><f:translate key="{lll}{head}" /></f:if>
+						</th>
+					</f:for>
+				</tr>
+			</thead>
+			<tbody>
+				<f:for each="{table.body}" as="tr">
+					<tr>
+						<td><f:translate key="{lll}{tr.title}" /></td>
+						<td>{tr.counter}</td>
+						<td>
+							<div class="btn-group">
+								<f:for each="{tr.icons}" as="icon">
+									<a href="{table.url}&{icon.getAttr}=1" class="btn btn-default" title="{f:translate(key: '{lll}{icon.lang}')}">
+										<span class="t3js-icon icon icon-size-small icon-state-default">
+											<f:format.raw>{icon.icon}</f:format.raw>
+										</span>
+									</a>
+								</f:for>
+							</div>
+						</td>
+					</tr>
+				</f:for>
+			</tbody>
+		</table>
+	</div>
 </f:section>
 
 <f:section name="dataStats">
@@ -161,28 +166,30 @@
     <f:if condition="{dataStats.tables.5}">
 		<br>
         <h2><f:translate key="{lll}stats_response_link" /></h2>
-	    <table class="table table-striped table-hover">
-	        <thead>
-	            <tr class="t3-row-header">
-	                <f:for each="{dataStats.tables.5.head}" as="head">
-	                    <th>
-	                       <f:if condition="{head}"><f:translate key="{lll}{head}" /></f:if>
-	                    </th>
-	                </f:for>
-	            </tr>
-	        </thead>
-	        <tbody>
-	            <f:for each="{dataStats.tables.5.body}" as="body">
-	                <tr>
-	                    <f:for each="{body}" as="cell" iteration="fooIterator">
-	                        <td>
-								<f:format.raw>{cell}</f:format.raw>
-	                        </td>
-	                    </f:for>
-	                </tr>
-	            </f:for>
-	        </tbody>
-	    </table>
+		<div class="table-fit">
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr class="t3-row-header">
+						<f:for each="{dataStats.tables.5.head}" as="head">
+							<th>
+							<f:if condition="{head}"><f:translate key="{lll}{head}" /></f:if>
+							</th>
+						</f:for>
+					</tr>
+				</thead>
+				<tbody>
+					<f:for each="{dataStats.tables.5.body}" as="body">
+						<tr>
+							<f:for each="{body}" as="cell" iteration="fooIterator">
+								<td>
+									<f:format.raw>{cell}</f:format.raw>
+								</td>
+							</f:for>
+						</tr>
+					</f:for>
+				</tbody>
+			</table>
+		</div>
     </f:if>
 
     <f:if condition="{dataStats.tables.6}">
@@ -437,54 +444,55 @@
     <f:variable name="lll"  value="LLL:EXT:direct_mail/Resources/Private/Language/locallang_mod2-6.xlf:" />
 
     <h3><f:translate key="{lll}stats_direct_mail" /></h3>
-    <table class="table table-striped table-hover">
-        <tr class="t3-row-header">
-            <td colspan="3"><f:format.raw>{row.icon}</f:format.raw> {row.subject}</td>
-        </tr>
-        <tr class="db_list_normal">
-            <td><f:translate key="{lll}view_from" /></td>
-            <td>{row.from_name} &lt;{row.from_email}&gt;</td>
-            <td>
-                <f:render section="help" arguments="{title: '{lll}view_from', content: '{row.fromInfo}'}" />
-            </td>
-        </tr>
-        <tr class="db_list_normal"></tr>
-            <td><f:translate key="{lll}view_dmail" /></td>
-            <td>{row.type} : <f:if condition="{row.dmailData.page}">[{row.dmailData.page}] </f:if><f:if condition="{row.dmailData.title}">{row.dmailData.title}</f:if>
-				<f:if condition="{row.dmailData.plainParams} || {row.dmailData.HTMLParams}">
-					<ul>
-						<f:if condition="{row.dmailData.plainParams}">
-							<li><a href="{row.dmailData.plainParams}" target="_blank">{row.dmailData.plainParams}</a></li>
-						</f:if>
-						<f:if condition="{row.dmailData.HTMLParams}">
-							<li><a href="{row.dmailData.HTMLParams}" target="_blank">{row.dmailData.HTMLParams}</a></li>
-						</f:if>
-					</ul>
-				</f:if>
-            </td>
-            <td>
-                <f:render section="help" arguments="{title: '{lll}view_dmail', content: '{row.dmailInfo}'}" />
-            </td>
-        </tr>
-        <tr class="db_list_normal">
-            <td><f:translate key="{lll}view_mail" /></td>
-            <td>{row.sendOptions}{row.attachment}</td>
-            <td>
-                <f:render section="help" arguments="{title: '{lll}view_mail', content: '{row.mailInfo}'}" />
-            </td>
-        </tr>
-        <tr class="db_list_normal">
-            <td><f:translate key="{lll}view_delivery_begin_end" /></td>
-            <td>{row.delBegin} / {row.delEnd}</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr class="db_list_normal">
-            <td><f:translate key="{lll}view_recipient_total_sent" /></td>
-            <td>{row.totalRecip} / {row.sentRecip}</td>
-            <td>&nbsp;</td>
-        </tr>
-    </table>
-    <div style="padding-top: 5px;"></div>
+	<div class="table-fit">
+		<table class="table table-striped table-hover">
+			<tr class="t3-row-header">
+				<td colspan="3"><f:format.raw>{row.icon}</f:format.raw> {row.subject}</td>
+			</tr>
+			<tr class="db_list_normal">
+				<td><f:translate key="{lll}view_from" /></td>
+				<td>{row.from_name} &lt;{row.from_email}&gt;</td>
+				<td>
+					<f:render section="help" arguments="{title: '{lll}view_from', content: '{row.fromInfo}'}" />
+				</td>
+			</tr>
+			<tr class="db_list_normal"></tr>
+				<td><f:translate key="{lll}view_dmail" /></td>
+				<td>{row.type} : <f:if condition="{row.dmailData.page}">[{row.dmailData.page}] </f:if><f:if condition="{row.dmailData.title}">{row.dmailData.title}</f:if>
+					<f:if condition="{row.dmailData.plainParams} || {row.dmailData.HTMLParams}">
+						<ul>
+							<f:if condition="{row.dmailData.plainParams}">
+								<li><a href="{row.dmailData.plainParams}" target="_blank">{row.dmailData.plainParams}</a></li>
+							</f:if>
+							<f:if condition="{row.dmailData.HTMLParams}">
+								<li><a href="{row.dmailData.HTMLParams}" target="_blank">{row.dmailData.HTMLParams}</a></li>
+							</f:if>
+						</ul>
+					</f:if>
+				</td>
+				<td>
+					<f:render section="help" arguments="{title: '{lll}view_dmail', content: '{row.dmailInfo}'}" />
+				</td>
+			</tr>
+			<tr class="db_list_normal">
+				<td><f:translate key="{lll}view_mail" /></td>
+				<td>{row.sendOptions}{row.attachment}</td>
+				<td>
+					<f:render section="help" arguments="{title: '{lll}view_mail', content: '{row.mailInfo}'}" />
+				</td>
+			</tr>
+			<tr class="db_list_normal">
+				<td><f:translate key="{lll}view_delivery_begin_end" /></td>
+				<td>{row.delBegin} / {row.delEnd}</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr class="db_list_normal">
+				<td><f:translate key="{lll}view_recipient_total_sent" /></td>
+				<td>{row.totalRecip} / {row.sentRecip}</td>
+				<td>&nbsp;</td>
+			</tr>
+		</table>
+	</div>
 </f:section>
 
 
@@ -521,16 +529,18 @@
 <f:section name="returnConfig">
 	<f:if condition="{returnConfig.counter}">
 		{returnConfig.title}<strong> {returnConfig.counter}</strong><br>
-		<table class="table table-striped table-hover">
-			<f:for each="{returnConfig.rows}" as="row">
-				<tr class="db_list_normal">
-					<td class="nowrap"><f:format.raw>{row.icon}</f:format.raw></td>
-					<td><a class="t3-link" href="{row.editLink}" title="{returnConfig.editLinkTitle}"><f:format.raw>{returnConfig.actionsOpen}</f:format.raw></a></td>
-					<td class="nowrap"><f:format.raw>{row.email}</f:format.raw></td>
-					<td class="nowrap"><f:format.raw>{row.name}</f:format.raw></td>
-				</tr>
-			</f:for>
-		</table>
+		<div class="table-fit">
+			<table class="table table-striped table-hover">
+				<f:for each="{returnConfig.rows}" as="row">
+					<tr class="db_list_normal">
+						<td class="nowrap"><f:format.raw>{row.icon}</f:format.raw></td>
+						<td><a class="t3-link" href="{row.editLink}" title="{returnConfig.editLinkTitle}"><f:format.raw>{returnConfig.actionsOpen}</f:format.raw></a></td>
+						<td class="nowrap"><f:format.raw>{row.email}</f:format.raw></td>
+						<td class="nowrap"><f:format.raw>{row.name}</f:format.raw></td>
+					</tr>
+				</f:for>
+			</table>
+		</div>
 	</f:if>
 </f:section>
 
