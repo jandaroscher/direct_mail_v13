@@ -255,21 +255,16 @@ class FeGroupsRepository extends MainRepository
             ->from($this->tableFeUsers, $this->tableFeUsers)
             ->from($this->table, $this->table)
             ->andWhere(
-                $queryBuilder->expr()->and()
-                ->add(
+                $queryBuilder->expr()->and(
                     $queryBuilder->expr()->in(
                         $this->table . '.pid',
                         $queryBuilder->createNamedParameter($pidArray, Connection::PARAM_INT_ARRAY)
-                    )
-                )
-                ->add('INSTR( CONCAT(\',\',' . $this->tableFeUsers . '.usergroup,\',\'),CONCAT(\',\',' . $this->table . '.uid ,\',\') )')
-                ->add(
+                    ),
+                    'INSTR( CONCAT(\',\',' . $this->tableFeUsers . '.usergroup,\',\'),CONCAT(\',\',' . $this->table . '.uid ,\',\') )',
                     $queryBuilder->expr()->neq(
                         $this->tableFeUsers . '.email',
                         $queryBuilder->createNamedParameter('')
-                    )
-                )
-                ->add(
+                    ),
                     $queryBuilder->expr()->eq(
                         $this->tableFeUsers . '.module_sys_dmail_newsletter',
                         1
@@ -297,44 +292,33 @@ class FeGroupsRepository extends MainRepository
                 )
             )
             ->andWhere(
-                $queryBuilder->expr()->and()
-                    ->add(
-                        $queryBuilder->expr()->in(
-                            $this->table . '.pid',
-                            $queryBuilder->createNamedParameter($pidArray, Connection::PARAM_INT_ARRAY)
-                        )
+                $queryBuilder->expr()->and(
+                    $queryBuilder->expr()->in(
+                        $this->table . '.pid',
+                        $queryBuilder->createNamedParameter($pidArray, Connection::PARAM_INT_ARRAY)
+                    ),
+                    'INSTR( CONCAT(\',\',' . $this->tableFeUsers . '.usergroup,\',\'),CONCAT(\',\',' . $this->table . '.uid ,\',\') )',
+                    $queryBuilder->expr()->eq(
+                        'mm_1.uid_foreign',
+                        $queryBuilder->quoteIdentifier('g_mm.uid_foreign')
+                    ),
+                    $queryBuilder->expr()->eq(
+                        $this->tableSysDmailGroup . '.uid',
+                        $queryBuilder->quoteIdentifier('g_mm.uid_local')
+                    ),
+                    $queryBuilder->expr()->eq(
+                        $this->tableSysDmailGroup . '.uid',
+                        $queryBuilder->createNamedParameter($groupUid, Connection::PARAM_INT)
+                    ),
+                    $queryBuilder->expr()->neq(
+                        $this->tableFeUsers . '.email',
+                        $queryBuilder->createNamedParameter('')
+                    ),
+                    $queryBuilder->expr()->eq(
+                        $this->tableFeUsers . '.module_sys_dmail_newsletter',
+                        1
                     )
-                    ->add('INSTR( CONCAT(\',\',' . $this->tableFeUsers . '.usergroup,\',\'),CONCAT(\',\',' . $this->table . '.uid ,\',\') )')
-                    ->add(
-                        $queryBuilder->expr()->eq(
-                            'mm_1.uid_foreign',
-                            $queryBuilder->quoteIdentifier('g_mm.uid_foreign')
-                        )
-                    )
-                    ->add(
-                        $queryBuilder->expr()->eq(
-                            $this->tableSysDmailGroup . '.uid',
-                            $queryBuilder->quoteIdentifier('g_mm.uid_local')
-                        )
-                    )
-                    ->add(
-                        $queryBuilder->expr()->eq(
-                            $this->tableSysDmailGroup . '.uid',
-                            $queryBuilder->createNamedParameter($groupUid, Connection::PARAM_INT)
-                        )
-                    )
-                    ->add(
-                        $queryBuilder->expr()->neq(
-                            $this->tableFeUsers . '.email',
-                            $queryBuilder->createNamedParameter('')
-                        )
-                    )
-                    ->add(
-                        $queryBuilder->expr()->eq(
-                            $this->tableFeUsers . '.module_sys_dmail_newsletter',
-                            1
-                        )
-                    )
+                )
             )
             ->orderBy($this->tableFeUsers . '.uid')
             ->addOrderBy($this->tableFeUsers . '.email')
