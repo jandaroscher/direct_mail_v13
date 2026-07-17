@@ -865,6 +865,7 @@ final class ImporterController extends MainController
         if ($handle === false) {
             return $mydata;
         }
+        $this->skipByteOrderMark($handle);
 
         while (($data = fgetcsv($handle, 10000, $delimiter, $encaps)) !== false) {
             // remove empty line in csv
@@ -910,6 +911,7 @@ final class ImporterController extends MainController
         if ($handle === false) {
             return $mydata;
         }
+        $this->skipByteOrderMark($handle);
 
         while ((($data = fgetcsv($handle, 10000, $delimiter, $encaps)) !== false)) {
             // remove empty line in csv
@@ -925,6 +927,22 @@ final class ImporterController extends MainController
         reset($mydata);
         $mydata = $this->convCharset($mydata);
         return $mydata;
+    }
+
+    /**
+     * Skip a leading UTF-8 byte order mark (BOM) on the given file handle.
+     *
+     * Tools like Excel prepend a BOM (0xEF 0xBB 0xBF) when exporting as
+     * "CSV UTF-8". Without skipping it, fgetcsv() reads the BOM as part of the
+     * first field (e.g. an e-mail address), which then fails validation.
+     *
+     * @param resource $handle Open file pointer positioned at the beginning of the file
+     */
+    protected function skipByteOrderMark($handle): void
+    {
+        if (fread($handle, 3) !== "\xEF\xBB\xBF") {
+            rewind($handle);
+        }
     }
 
     /**

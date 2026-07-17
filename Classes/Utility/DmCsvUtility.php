@@ -19,7 +19,7 @@ class DmCsvUtility
     public function getCsvValues(string $str, string $sep = ','): array
     {
         $fh = tmpfile();
-        fwrite($fh, trim($str));
+        fwrite($fh, trim($this->removeByteOrderMark($str)));
         fseek($fh, 0);
         $lines = [];
         if ($sep == 'tab') {
@@ -31,6 +31,25 @@ class DmCsvUtility
 
         fclose($fh);
         return $lines;
+    }
+
+    /**
+     * Remove a leading UTF-8 byte order mark (BOM) from the given string.
+     *
+     * Tools like Excel prepend a BOM (0xEF 0xBB 0xBF) when exporting as
+     * "CSV UTF-8". Without removing it, the BOM becomes part of the first
+     * field (e.g. an e-mail address), which then fails validation.
+     *
+     * @param string $str Raw CSV string
+     *
+     * @return string String without a leading UTF-8 BOM
+     */
+    private function removeByteOrderMark(string $str): string
+    {
+        if (str_starts_with($str, "\xEF\xBB\xBF")) {
+            return substr($str, 3);
+        }
+        return $str;
     }
 
     /**
