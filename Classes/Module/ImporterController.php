@@ -837,6 +837,22 @@ final class ImporterController extends MainController
     }
 
     /**
+     * Determine whether a parsed CSV row is empty.
+     *
+     * fgetcsv() returns a single null element ([null]) for a blank line. Such
+     * rows must be skipped, otherwise they are imported as empty recipients or
+     * counted as invalid e-mail addresses.
+     *
+     * @param array $data A row as returned by fgetcsv()
+     *
+     * @return bool True if the row has no usable content
+     */
+    private function isEmptyCsvRow(array $data): bool
+    {
+        return count($data) === 1 && trim((string)($data[0] ?? '')) === '';
+    }
+
+    /**
      * Read in the given CSV file. The function is used during the final file import.
      * Removes first the first data row if the CSV has fieldnames.
      *
@@ -867,8 +883,8 @@ final class ImporterController extends MainController
         }
 
         while (($data = fgetcsv($handle, 10000, $delimiter, $encaps)) !== false) {
-            // remove empty line in csv
-            if ((count($data) >= 1)) {
+            // skip empty lines (fgetcsv returns [null] for a blank line)
+            if (!$this->isEmptyCsvRow($data)) {
                 $mydata[] = $data;
             }
         }
@@ -912,8 +928,8 @@ final class ImporterController extends MainController
         }
 
         while ((($data = fgetcsv($handle, 10000, $delimiter, $encaps)) !== false)) {
-            // remove empty line in csv
-            if ((count($data) >= 1)) {
+            // skip empty lines (fgetcsv returns [null] for a blank line)
+            if (!$this->isEmptyCsvRow($data)) {
                 $mydata[] = $data;
                 $i++;
                 if ($i >= $records) {
